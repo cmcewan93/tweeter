@@ -1,0 +1,28 @@
+nav {
+  position: fixed;
+  height: 120px;
+  width: 100%;
+  top: 0px;
+  background-color: #4056a1;
+  color: #ffffff;
+  font-family: 'Bungee', 'sans-serif';
+  z-index: 1; 
+  display: flex;
+  
+  
+}
+.nav-tweeter {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 30px;  
+  margin: 1.5em; 
+}
+
+.nav-write-tweet {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  margin: 1.4em;
+}

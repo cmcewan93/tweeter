@@ -3,29 +3,56 @@
   <head>
     <!-- Meta Information -->
     <title>Tweeter - Home Page</title>
+    <meta charset="utf-8">
 
     <!-- External CSS -->
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
 
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Bungee|Source+Sans+Pro:300i,700i&display=swap" rel="stylesheet">
+
     <!-- App CSS -->
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/header.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
 
     <!-- External JS -->
     <script type="text/javascript" src="/vendor/jquery-2.2.3.min.js"></script>
 
     <!-- App JS -->
     <script type="text/javascript" src="/scripts/app.js"></script>
+    
   </head>
 
   <body>
 
     <!-- Top nav bar (fixed) -->
     <nav>
-      <span>tweeter</span>
+      <span class="nav-tweeter">tweeter</span>
+      <span class="nav-write-tweet">Write a new Tweet!</span>
     </nav>
+
+    <header>
+      <div class="profile">
+          <img src="/images/profile-hex.png"> 
+      </div>
+      <br>
+      <div class="profile">
+          <h2>Colin McEwan</h2>
+      </div>
+  </header>
 
     <!-- Page-specific (main) content here -->
     <main class="container">
+        <section>
+            <h2>Compose Tweet</h2>
+            <form>
+              <textarea class ="tweet-area" name="text" placeholder="What are you humming about?"></textarea>
+              <input class="tweet-button" type="submit" value="Tweet">
+              <span class="counter">140</span>
+            </form>
+          </section>
     </main>
 
   </body>
