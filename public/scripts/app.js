@@ -42,6 +42,12 @@ const createTweetElement = (tweetObj) => {
 
 $(document).ready( function() {
 
+  $(".nav-down-button").on('click', function(e) {
+    console.log('NAV CLICK')
+    e.preventDefault();
+    $("#tweet-container").slideToggle();
+  });
+
   const $button = $(".tweet-form");
   $button.on('submit', function (event) {
     event.preventDefault();
@@ -49,6 +55,9 @@ $(document).ready( function() {
     let validData = validateForm(input);
 
     if(validData.valid === true) {
+      if($(".alert")) {
+        $(".alert").slideUp();
+      }
       $.ajax({
         method: 'POST',
         url: '/tweets',
@@ -60,7 +69,11 @@ $(document).ready( function() {
       })
       // $("#tweet-area").val("");
     } else if (validData.valid === false)  {
-      alert(validData.message);
+      if($(".alert")) {
+        $(".alert").remove();
+      }
+      let newError = validData.errorHTML;
+      $("#tweet-container").prepend(newError); 
     }  
   });
   loadTweets();
@@ -97,16 +110,20 @@ const renderTweets = (tweets) => {
 }
 
 const validateForm = (data) => {
+
   let error = {
     message: '',
     valid: true,
+    errorHTML: ''
   }
   if(data.length <= 5) {
-    error.message = 'No input!';
+    error.message = 'Invalid input! You need to enter some text!';
     error.valid = false;
+    error.errorHTML =  `<span class="alert">${error.message}</span>`
   } else if (data.length > 145) {
     error.message = "The tweet you entered is too long!",
     error.valid = false;  
+    error.errorHTML =  `<span class="alert">${error.message}</span>`
   } 
   return error;
 }

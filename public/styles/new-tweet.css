@@ -1,6 +1,9 @@
 
+#tweet-container {
+  display:none;
+}
+
 .tweet-area {
-  /* background-color: #f4f1ec; */
   border: 0px;
   font-weight: bold;
   width: 100%;

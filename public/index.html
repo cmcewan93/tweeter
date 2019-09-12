@@ -34,10 +34,13 @@
       <span class="nav-tweeter">tweeter</span>
       <div class="nav-right">
        <span class="nav-write-tweet">Write a new Tweet!</span>
-       <button class="nav-down-button">
-          test
-       </button>
-      </div>
+       <div class="nav-down-button">
+          <div class="arrow">
+              <span></span>
+              <span></span>
+              <span></span>
+          </div>
+        </div>
     </nav>
 
     <header class="profile-header">
@@ -52,7 +55,7 @@
 
     <!-- Page-specific (main) content here -->
     <main class="container">
-        <section>
+        <section id="tweet-container">
             <h2>Compose Tweet</h2>
             <form class ="tweet-form" method="POST" action="/tweets">
               <textarea class ="tweet-area" name="text" placeholder="What are you humming about?"></textarea>
