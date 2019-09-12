@@ -20,9 +20,16 @@ nav {
 }
 
 .nav-write-tweet {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  width: 100%;
-  margin: 1.4em;
+
 }
+
+.nav-right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  margin: auto;
+  
+}
+

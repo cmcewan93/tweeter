@@ -8,7 +8,6 @@
   * returns a tweet article element
   */
 const createTweetElement = (tweetObj) => {
-  // let $tweet = $("<article>").addClass("tweet-display");
 
  const $tweet = `
             <article class="tweet-display">
@@ -24,7 +23,7 @@ const createTweetElement = (tweetObj) => {
               </span>
             </header>
             <div class="tweet-message">
-              ${tweetObj.content.text}
+              ${escape(tweetObj.content.text)}
             </div>
             <footer class="tweet-footer">
               <span>
@@ -41,21 +40,12 @@ const createTweetElement = (tweetObj) => {
   return $tweet;
 }
 
-const renderTweets = function(tweets) {
-  for(tweet of tweets) {
-    let $newTweet = createTweetElement(tweet);
-    $('#tweets-container').prepend($newTweet); 
-  }
-}
-
-
 $(document).ready( function() {
 
   const $button = $(".tweet-form");
   $button.on('submit', function (event) {
     event.preventDefault();
     let input = $($button).serialize();
-   
     let validData = validateForm(input);
 
     if(validData.valid === true) {
@@ -63,16 +53,30 @@ $(document).ready( function() {
         method: 'POST',
         url: '/tweets',
         data: input,
-        success: loadTweets()
+        success:  () => {
+          let test = $("#tweets-container");
+          addTweet(test);
+        }
       })
+      // $("#tweet-area").val("");
     } else if (validData.valid === false)  {
       alert(validData.message);
     }  
-    $(".tweet-area").html('');
   });
-  
   loadTweets();
 });
+
+const addTweet = (element) => {
+  $.ajax({
+    method: 'GET',
+    url: '/tweets',
+    dataType: 'JSON'
+  })
+  .then(function (data) {
+    let tweet = createTweetElement(data[data.length -1]);
+    $(element).prepend(tweet);
+  })
+}
 
 const loadTweets = () => {
   $.ajax({
@@ -83,6 +87,13 @@ const loadTweets = () => {
   .then(function (data) {
     renderTweets(data);
   })
+}
+
+const renderTweets = (tweets) => {
+  for(tweet of tweets) {
+    let $newTweet = createTweetElement(tweet);
+    $('#tweets-container').prepend($newTweet); 
+  }
 }
 
 const validateForm = (data) => {
@@ -98,5 +109,11 @@ const validateForm = (data) => {
     error.valid = false;  
   } 
   return error;
+}
+
+const escape =  function(str) {
+  let div = document.createElement('div');
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
 }
 
