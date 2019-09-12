@@ -49,7 +49,7 @@
     <main class="container">
         <section>
             <h2>Compose Tweet</h2>
-            <form>
+            <form class ="tweet-form" method="POST" action="/tweets">
               <textarea class ="tweet-area" name="text" placeholder="What are you humming about?"></textarea>
               <input class="tweet-button" type="submit" value="Tweet">
               <span class="counter">140</span>
@@ -62,30 +62,3 @@
   </body>
 </html>
 
-
-     <!-- <article class="tweet-display">
-            <header class="tweet-header">
-              <div class="tweet-header-left">
-                <img class='tweet-profile-pic' src="/images/profile-hex.png"/> 
-                <span class='tweet-full-name'>
-                Colin McEwan
-                </span>
-             </div>
-              <span class="tweet-handle">
-                @Colin_McEwan
-              </span>
-            </header>
-            <div class="tweet-message">
-              message
-            </div>
-            <footer class="tweet-footer">
-              <span>
-                10 days ago
-              </span>
-              <span class="tweet-logos">
-                  <i class="fab fa-font-awesome-flag"></i>
-                  <i class="fas fa-retweet"></i>
-                  <i class="fas fa-heart"></i>
-              </span>
-            </footer>
-          </article>
