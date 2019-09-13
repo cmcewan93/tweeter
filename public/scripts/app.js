@@ -67,7 +67,6 @@ $(document).ready( function() {
           addTweet(test);
         }
       })
-      // $("#tweet-area").val("");
     } else if (validData.valid === false)  {
       if($(".alert")) {
         $(".alert").remove();
