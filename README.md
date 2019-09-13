@@ -18,4 +18,8 @@ This repository is the starter code for the project: Students will fork and clon
 
 ## Screenshots
 
+!["Screenshot of compose tweet box"](https://github.com/cmcewan93/tweeter/blob/master/docs/composeTweet.png)
 
+!["Screenshot of homepage"](https://github.com/cmcewan93/tweeter/blob/master/docs/homepage.png)
+
+!["Screenshot of sample Error"](https://github.com/cmcewan93/tweeter/blob/master/docs/tweeterError.png)
