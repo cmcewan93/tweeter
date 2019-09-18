@@ -1,12 +1,7 @@
-/*
- * Client-side JS logic goes here
- * jQuery is already loaded
- * Reminder: Use (and do all your DOM work in) jQuery's document ready function
- */
-
- /**
-  * returns a tweet article element
+ /*
+  * Creates a new Tweet element for dom using a given JSON object
   */
+
 const createTweetElement = (tweetObj) => {
 
  const $tweet = `
@@ -27,7 +22,7 @@ const createTweetElement = (tweetObj) => {
             </div>
             <footer class="tweet-footer">
               <span>
-                ${tweetObj.created_at}
+                ${convertDate(tweetObj.created_at)}
               </span>
               <span class="tweet-logos">
                   <i class="fab fa-font-awesome-flag"></i>
@@ -40,19 +35,37 @@ const createTweetElement = (tweetObj) => {
   return $tweet;
 }
 
+
+const convertDate = (dateobj) => {
+  let date = new Date(parseInt(dateobj));
+  let fdate = (date.getMonth() + 1)+'/'+ date.getDate()  +'/'+date.getFullYear()
+  return fdate;
+}
 $(document).ready( function() {
+  /*
+   * Displays the Compose Tweet container after clicking the
+   * arrow on on NAV bar
+   */
 
   $(".nav-down-button").on('click', function(e) {
-    console.log('NAV CLICK')
     e.preventDefault();
     $("#tweet-container").slideToggle();
   });
+
+  /*
+   * Submit button stores input and returns validity check
+   */
 
   const $button = $(".tweet-form");
   $button.on('submit', function (event) {
     event.preventDefault();
     let input = $($button).serialize();
     let validData = validateForm(input);
+
+    /*
+     * If object is valid remove previous alerts
+     and perform post request otherwise display corresponding alert
+     */
 
     if(validData.valid === true) {
       if($(".alert")) {
@@ -78,6 +91,10 @@ $(document).ready( function() {
   loadTweets();
 });
 
+/*
+ * Adds tweet to storage via /tweets route/
+ */
+
 const addTweet = (element) => {
   $.ajax({
     method: 'GET',
@@ -89,6 +106,10 @@ const addTweet = (element) => {
     $(element).prepend(tweet);
   })
 }
+
+/*
+ * Renders all tweets on page
+ */
 
 const loadTweets = () => {
   $.ajax({
@@ -108,6 +129,11 @@ const renderTweets = (tweets) => {
   }
 }
 
+/*
+ * Perforoms a validity check on user inputed form data and returns
+ * and object with corresponding error data.
+ */
+
 const validateForm = (data) => {
 
   let error = {
@@ -126,6 +152,10 @@ const validateForm = (data) => {
   } 
   return error;
 }
+
+/*
+ * Prevents xss scripting by escaping any illegitimate characters
+ */
 
 const escape =  function(str) {
   let div = document.createElement('div');
